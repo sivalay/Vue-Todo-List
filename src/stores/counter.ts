@@ -1,12 +1,29 @@
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
+import axios from 'axios'
+
+import type { TodoItem } from '@/types'
 
 export const useCounterStore = defineStore('counter', () => {
-  const count = ref(0)
-  const doubleCount = computed(() => count.value * 2)
-  function increment() {
-    count.value++
+  // states
+  const todoList = ref<TodoItem[]>([])
+
+  // actions
+  const getTodoList = async () => {
+    try {
+      const response = await axios.get('https://jsonplaceholder.typicode.com/todos')
+      todoList.value = response.data
+    } catch (error) {
+      console.log('Error while loading response...')
+    }
   }
 
-  return { count, doubleCount, increment }
+  // returns
+  return {
+    // states
+    todoList,
+
+    // actions
+    getTodoList,
+  }
 })
