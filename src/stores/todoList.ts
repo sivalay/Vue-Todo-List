@@ -7,6 +7,7 @@ import type { TodoItem } from '@/types';
 export const useTodoStore = defineStore('counter', () => {
   // states
   const todoList = ref<TodoItem[]>([]);
+  const hasError = ref<string>('');
 
   // actions
   const getTodoList = async () => {
@@ -14,7 +15,7 @@ export const useTodoStore = defineStore('counter', () => {
       const response = await axios.get('https://jsonplaceholder.typicode.com/todos');
       todoList.value = response.data;
     } catch (error) {
-      console.log('Error while loading response...');
+      hasError.value = 'Error while loading response...';
     }
   };
 
