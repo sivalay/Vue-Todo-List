@@ -2,7 +2,7 @@
   <div class="todo-list-wrapper">
     <h1 class="todo-list-wrapper__header">Todo-List</h1>
     <div class="todo-list-wrapper__list-container">
-      <ul v-for="todo in storeCounter.todoList" class="todo-list">
+      <ul v-for="todo in storeTodo.todoList" class="todo-list">
         <li>{{ todo.title }}</li>
       </ul>
     </div>
@@ -14,9 +14,9 @@ import { onMounted } from 'vue';
 
 import { useTodoStore } from '@/stores/todoList';
 
-const storeCounter = useTodoStore();
+const storeTodo = useTodoStore();
 
-onMounted(storeCounter.getTodoList);
+onMounted(storeTodo.getTodoList);
 </script>
 
 <style scoped lang="scss">
