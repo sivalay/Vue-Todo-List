@@ -1,12 +1,13 @@
 import { ref } from 'vue'
-import { defineStore } from 'pinia'
 import axios from 'axios'
+import { defineStore } from 'pinia'
 
 import type { TodoItem } from '@/types'
 
 export const useCounterStore = defineStore('counter', () => {
   // states
   const todoList = ref<TodoItem[]>([])
+  const hasError = ref<string>('')
 
   // actions
   const getTodoList = async () => {
@@ -14,7 +15,7 @@ export const useCounterStore = defineStore('counter', () => {
       const response = await axios.get('https://jsonplaceholder.typicode.com/todos')
       todoList.value = response.data
     } catch (error) {
-      console.log('Error while loading response...')
+      hasError.value = 'Error while loading response...'
     }
   }
 

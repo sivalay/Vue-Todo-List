@@ -2,9 +2,13 @@
   <div class="todo-list-wrapper">
     <h1 class="todo-list-wrapper__header">Todo-List</h1>
     <div class="todo-list-wrapper__list-container">
-      <ul v-for="todo in storeCounter.todoList" class="todo-list">
-        <li>{{ todo.title }}</li>
-      </ul>
+      <!-- <ul v-for="todo in storeCounter.todoList" class="todo-list">
+        <li>
+          <input type="checkbox" />
+          <span>{{ todo.title }}</span>
+        </li>
+      </ul> -->
+      <todo-list />
     </div>
   </div>
 </template>
@@ -13,6 +17,8 @@
 import { onMounted } from 'vue'
 
 import { useCounterStore } from '@/stores/counter'
+
+import TodoList from '@/components/TodoListView.vue'
 
 const storeCounter = useCounterStore()
 
@@ -55,6 +61,11 @@ onMounted(storeCounter.getTodoList)
     .todo-list {
       display: flex;
       flex-flow: column;
+      list-style-type: none;
+
+      input {
+        margin-right: 10px;
+      }
     }
   }
 
