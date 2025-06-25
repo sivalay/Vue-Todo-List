@@ -10,13 +10,13 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted } from 'vue';
 
-import { useCounterStore } from '@/stores/counter'
+import { useTodoStore } from '@/stores/todoList';
 
-const storeCounter = useCounterStore()
+const storeCounter = useTodoStore();
 
-onMounted(storeCounter.getTodoList)
+onMounted(storeCounter.getTodoList);
 </script>
 
 <style scoped lang="scss">
