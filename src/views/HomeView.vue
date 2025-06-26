@@ -8,21 +8,26 @@
           <span>{{ todo.title }}</span>
         </li>
       </ul> -->
-      <todo-list />
+      <todo-list @toggle-done="storeTodo.handleToggleDone" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted } from 'vue';
 
-import { useCounterStore } from '@/stores/counter'
+import { useTodoStore } from '@/stores/counter';
 
-import TodoList from '@/components/TodoListView.vue'
+import TodoList from '@/components/TodoListView.vue';
 
-const storeCounter = useCounterStore()
+const storeTodo = useTodoStore();
 
-onMounted(storeCounter.getTodoList)
+// function handleToggleDone(id: string) {
+//   console.log(id, 'is id')
+//   storeTodo.getTodoItem
+// }
+
+onMounted(storeTodo.getTodoList);
 </script>
 
 <style scoped lang="scss">
